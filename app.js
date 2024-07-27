@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const credRoute = require('./routes/credRoutes');
+const userRoute = require('./routes/authRoutes');
 
 const app = express();
 
@@ -14,5 +15,6 @@ app.use(express.json());
 
 //Routes 
 app.use('/api/v1/creds',credRoute);
+app.use('/api/v1/user',userRoute);
 
 module.exports = app;
