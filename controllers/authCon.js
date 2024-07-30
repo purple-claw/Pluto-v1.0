@@ -1,5 +1,6 @@
 const user = require('../models/authModel');
 const bcrypt = require('bcryptjs');
+const userCredsModel = require('./../models/userCredModel');
 
 exports.registerUser = async (req,res) => {
     try {
@@ -13,17 +14,11 @@ exports.registerUser = async (req,res) => {
             password: hashedPassword
         });
         const savedUser = await newUser.save();
-        res.status(201).json({
-            status: 'Success',
-            message: 'User registered successfully',
-            data: {
-            user: savedUser
-            }
-        });
+        res.send('User Registered Succesfully');
     }catch (err) {
         res.status(400).json({
             status : "Fail",
-            message : err
+            message : err.message
         });
     }
 };
@@ -49,6 +44,7 @@ exports.userLogin = async (req, res) => {
                 message: 'Invalid password',
             });
         }
+        res.send('Welcome User!!');
         res.status(200).json({
             status: 'Success',
             message: 'User logged in successfully',
